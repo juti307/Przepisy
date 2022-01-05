@@ -1,0 +1,68 @@
+﻿@page
+@model Projekt3.Pages.FavouritesModel
+@{
+    ViewData["Title"] = "Moje ulubione";
+}
+
+<div class="text-center">
+    <h1>Moje ulubione</h1>
+</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Ingredients)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].User)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Like)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Recipes)
+            {
+                @if (item.Like == 1 && item.User == Model.GetUser)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ingredients)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Like)
+                        </td>
+                        <td>
+                            <a asp-page="./Recipies/Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+

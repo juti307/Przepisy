@@ -1,0 +1,28 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Dodaj przepis";
+}
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+</div>
+
+    <form method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Recipe.Name">Nazwa</label>
+                <input asp-for="Recipe.Name" class="form-control" placeholder="Miejsce na nazwe twojego przepisu">
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Recipe.Ingredients">Składniki</label>
+                <input asp-for="Recipe.Ingredients" class="form-control" placeholder="Miejsce na składniki do twojego przepisu">
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Recipe.Description">Opis</label>
+            <input asp-for="Recipe.Description" class="form-control" placeholder="Miejsce na opis twojego przepisu">
+        </div>
+        <button type="submit" class="btn btn-primary">Zatwierdź</button>
+    </form>
+
+    

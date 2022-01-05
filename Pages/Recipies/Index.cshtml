@@ -1,0 +1,95 @@
+﻿@page
+@model Projekt3.Pages.Recipies.IndexModel
+
+@{
+    ViewData["Title"] = "Dodane przepisy";
+}
+<div class="text-center">
+    <h1>Dodane przepisy</h1>
+</div>
+
+    <form method="post">
+
+        <div class="form-group col-md-6">
+            <label asp-for="RecipeName">Podaj nazwę przepisu</label>
+            <input asp-for="RecipeName" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="UserName">Podaj nazwę użytkownika</label>
+            <input asp-for="UserName" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Zatwierdź</button>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Ingredients)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].User)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Votes)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Recipes)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ingredients)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Votes)
+                </td>
+                <!--  <td class="form-group">
+        <div class="checkbox">
+            <label for="Input_RememberMe">
+                <input type="checkbox" data-val="true" data-val-required="The Remember me? field is required." id="Input_RememberMe" name="Input.RememberMe" value="true" />
+                Remember me?
+            </label>
+        </div>
+    </td>-->
+                @if (item.User != null)
+                {
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id">Szczegóły</a> | 
+                <a asp-page="./Plus" asp-route-id="@item.Id">  Lubię!  </a> | 
+                <a asp-page="./Minus" asp-route-id="@item.Id">  Nie Lubię!  </a>| 
+                @if (item.User == Model.GetUser)
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edytuj</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Usuń</a>
+                }
+            </td>
+                }
+       
+            </tr>
+            }
+        </tbody>
+    </table>
